@@ -56,6 +56,7 @@ def ping(echo, trig):
 print(" press Ctrl+c to stop program ")
 #Sets customertracker to 0 to begin tracking
 customertracker = 0
+LEDUpdate = 0
 try:
     
     while True:
@@ -96,11 +97,15 @@ try:
             print("Customer Walked Out")
             customertracker -= 1
         
+        
+        
         #If a customer is in the store it will activate the webhook in the particle via the system CLI. It has a timeout of 60seconds.
-        if (customertracker > 0):
+        if (customertracker > 0 and LEDUpdate != 1):
             os.system('timeout 60s curl https://api.particle.io/v1/devices/e00fce68b4a1fcad83aa9f39/customerTracker -d access_token=d367aafaa562032c7ba883fe035bae0878df8ef6 -d "args=Customers Inside"')
-        else:
+          LEDUpdate = 1
+        elif customertracker < 1:
             os.system('timeout 60s curl https://api.particle.io/v1/devices/e00fce68b4a1fcad83aa9f39/customerTracker -d access_token=d367aafaa562032c7ba883fe035bae0878df8ef6 -d "args=No Customers Inside"')
+            LEDUpdate = 0
             
             
 
