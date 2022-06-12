@@ -103,7 +103,7 @@ try:
         if (customertracker == 1 and LEDUpdate != 1):
             os.system('timeout 60s curl https://api.particle.io/v1/devices/e00fce68b4a1fcad83aa9f39/customerTracker -d access_token=d367aafaa562032c7ba883fe035bae0878df8ef6 -d "args=Customers Inside"')
           LEDUpdate = 1
-        elif (customertracker < 1 and LEDUpdate = 1):
+        elif (customertracker < 1 and LEDUpdate == 1):
             os.system('timeout 60s curl https://api.particle.io/v1/devices/e00fce68b4a1fcad83aa9f39/customerTracker -d access_token=d367aafaa562032c7ba883fe035bae0878df8ef6 -d "args=No Customers Inside"')
             LEDUpdate = 0
             
