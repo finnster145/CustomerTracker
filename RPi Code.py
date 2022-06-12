@@ -72,7 +72,7 @@ try:
             
                
             print("Customer walked in")
-            requests.post('https://maker.ifttt.com/trigger/customerIn/json/with/key/cuSnwRhufs9YsIvO0CA5un')
+            requests.post('https://maker.ifttt.com/trigger/customerIn/json/with/key/cuSnwRhufs9YsIvO0CA5un', timeout = 60)
             customertracker += 1
             
         
@@ -81,15 +81,15 @@ try:
         if (distance1 < 30 and customertracker > 0):
             time.sleep(0.5)
             
-            requests.post('https://maker.ifttt.com/trigger/customerOut/json/with/key/cuSnwRhufs9YsIvO0CA5un')
+            requests.post('https://maker.ifttt.com/trigger/customerOut/json/with/key/cuSnwRhufs9YsIvO0CA5un', timeout = 60)
             print("Customer Walked Out")
             customertracker -= 1
         
         
         if (customertracker > 0):
-            os.system('curl https://api.particle.io/v1/devices/e00fce68b4a1fcad83aa9f39/customerTracker -d access_token=d367aafaa562032c7ba883fe035bae0878df8ef6 -d "args=Customers Inside"')
+            os.system('timeout 60s curl https://api.particle.io/v1/devices/e00fce68b4a1fcad83aa9f39/customerTracker -d access_token=d367aafaa562032c7ba883fe035bae0878df8ef6 -d "args=Customers Inside"')
         else:
-            os.system('curl https://api.particle.io/v1/devices/e00fce68b4a1fcad83aa9f39/customerTracker -d access_token=d367aafaa562032c7ba883fe035bae0878df8ef6 -d "args=No Customers Inside"')
+            os.system('timeout 60s curl https://api.particle.io/v1/devices/e00fce68b4a1fcad83aa9f39/customerTracker -d access_token=d367aafaa562032c7ba883fe035bae0878df8ef6 -d "args=No Customers Inside"')
             
             
 
